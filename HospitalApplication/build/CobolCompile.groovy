@@ -38,7 +38,7 @@ println("Compiling and link editing program $file")
 def logicalFile = resolver.getLogicalFile()
 
 // create the appropriate compile parm list
-def compileParms = "LIB"
+def compileParms = "TEST(SOURCE,EJPD),APOST,SQL,OPT(0)"
 if (logicalFile.isCICS()) {
     compileParms = "$compileParms,DYNAM,CICS"
 }   
@@ -114,7 +114,7 @@ compile.copy(new CopyToHFS().ddName("SYSPRINT").file(logFile).hfsEncoding(proper
 
 
 // define the MVSExec command to link edit the program
-def linkedit = new MVSExec().file(file).pgm("IEWBLINK").parm("MAP,RENT,COMPAT(PM5)")
+def linkedit = new MVSExec().file(file).pgm("HEWL").parm("LIST,XREF,RENT,NAME=TRTMNTR")
 	                    
 // add DD statements to the linkedit command
 linkedit.dd(new DDStatement().name("SYSLMOD").dsn("$loadPDS($member)").options("shr").output(true).deployType("LOAD"))
