@@ -1,4 +1,4 @@
-      ** QSAM FILE
+      *** QSAM FILE
        01  INPATIENT-DAILY-REC.
            05  PATIENT-RECORD-TYPE     PIC X(01).
                88  TRAILER-REC     VALUE "T".
