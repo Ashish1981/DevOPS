@@ -76,7 +76,9 @@ else {
 }
 
 // execute git command
-def cmd = "git diff --name-only $lastBuildHash $properties.buildHash"
+//def cmd = "git diff --name-only $lastBuildHash $properties.buildHash"
+def cmd = "git -C $properties.sourceDir diff --name-only $lastBuildHash $properties.buildHash"
+
 def out = new StringBuffer()
 def err = new StringBuffer()
 
