@@ -59,11 +59,11 @@
              FILE STATUS IS OFCODE.
 
            SELECT PATMSTR
-                  ASSIGN       to PATMSTR
-                  ORGANIZATION is INDEXED
-                  ACCESS MODE  is RANDOM
-                  RECORD KEY   is PATIENT-KEY
-                  FILE STATUS  is PATMSTR-STATUS.
+                  ASSIGN       TO PATMSTR
+                  ORGANIZATION IS INDEXED
+                  ACCESS MODE  IS RANDOM
+                  RECORD KEY   IS PATIENT-KEY
+                  FILE STATUS  IS PATMSTR-STATUS.
 
        DATA DIVISION.
        FILE SECTION.
@@ -72,7 +72,7 @@
            LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 130 CHARACTERS
            BLOCK CONTAINS 0 RECORDS
-           DATA RECORD IS SYSOUT-Rec.
+           DATA RECORD IS SYSOUT-REC.
        01  SYSOUT-REC  PIC X(130).
 
       ****** THIS FILE IS PASSED IN FROM THE DATA COLLECTIONS SYSTEM
@@ -219,6 +219,7 @@
       * COPY ABENDREC.
       ** QSAM FILE
        COPY ABENDREC.
+      * COPY BADD400.                                                   
 
       * COPY DIAGCODE.
       ******************************************************************
@@ -250,9 +251,7 @@
            10 COST                           PIC S9(5)V99 COMP-3.
            10 PHARMACY-COST                  PIC S9(3)V99 COMP-3.
 
-       EXEC SQL
-           INCLUDE SQLCA
-       END-EXEC.
+           EXEC SQL INCLUDE  SQLCA END-EXEC.                            
 
        PROCEDURE DIVISION.
            PERFORM 000-HOUSEKEEPING THRU 000-EXIT.
@@ -510,12 +509,12 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "*** DIAGNOSTIC CODE NOT-FOUND IN DIAG_CODES" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  PATIENT-ID IN INPATIENT-TREATMENT-REC
+               MOVE SQLCODE TO  PATIENT-ID IN INPATIENT-TREATMENT-REC
                MOVE DIAG-CODE IN DCLDIAG-CODES
                                   TO PRIMARY-DIAGNOSTIC-CODE
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 600-EXIT
            ELSE
@@ -523,12 +522,12 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "***  FATAL DB2 ERROR" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  PATIENT-ID IN INPATIENT-TREATMENT-REC
+               MOVE SQLCODE TO  PATIENT-ID IN INPATIENT-TREATMENT-REC
                MOVE DIAG-CODE IN DCLDIAG-CODES
                                   TO PRIMARY-DIAGNOSTIC-CODE
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 1000-DB2-ERROR-RTN.
 
@@ -547,9 +546,9 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "*** BED IDENT NOT-FOUND IN HOSP_BED" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 600-EXIT
            ELSE
@@ -557,9 +556,9 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "***  FATAL DB2 ERROR" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 1000-DB2-ERROR-RTN.
 
@@ -578,18 +577,18 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "*** ATTENDING PHYSICIAN NOT FOUND IN TABLE" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 600-EXIT
            ELSE
                MOVE "***  FATAL DB2 ERROR" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 1000-DB2-ERROR-RTN.
 
@@ -611,9 +610,9 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "*** MEDICATION-ID NOT FOUND IN TABLE" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 600-EXIT
            ELSE
@@ -621,9 +620,9 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "***  FATAL DB2 ERROR" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 1000-DB2-ERROR-RTN.
 
@@ -643,9 +642,9 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "*** SUPERVISOR NURSE NOT FOUND" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 600-EXIT
            ELSE
@@ -653,9 +652,9 @@ VUTEST     DISPLAY '100-MAINLINE...'.
                MOVE "*** FATAL DB2 ERROR" TO
                ERR-MSG IN INPATIENT-TREATMENT-REC-ERR
                MOVE "Y" TO ERROR-FOUND-SW
-               move sqlcode to  EXPECTED-VAL
-               move PATIENT-ID IN INPATIENT-TREATMENT-REC
-                               to ACTUAL-VAL
+               MOVE SQLCODE TO  EXPECTED-VAL
+               MOVE PATIENT-ID IN INPATIENT-TREATMENT-REC
+                               TO ACTUAL-VAL
                WRITE SYSOUT-REC FROM ABEND-REC
                GO TO 1000-DB2-ERROR-RTN.
        600-EXIT.
