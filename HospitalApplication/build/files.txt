@@ -20,3 +20,4 @@ HospitalApplication/copybook/PATMSTR.cpy
 HospitalApplication/copybook/PATPERSN.cpy
 HospitalApplication/copybook/PROVIDER.cpy
 HospitalApplication/copybook/TREATMNT.cpy
+HospitalApplication/copybook/PATDALY.cpy
