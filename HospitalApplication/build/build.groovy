@@ -127,7 +127,7 @@ tools.finalizeBuildResult(jsonReport:jsonFile, htmlReport:htmlFile, filesProcess
 def endTime = new Date()
 def duration = TimeCategory.minus(endTime, startTime)
 def state = (properties.error) ? "ERROR" : "CLEAN"
-println("** Build finished at $endTime")
+println("** Build ended at $endTime")
 println("** Build State : $state")
 println("** Total files processed : $processCounter")
 println("** Total build time  : $duration")

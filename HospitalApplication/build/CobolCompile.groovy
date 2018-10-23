@@ -38,7 +38,7 @@ println("Compiling and link editing program $file")
 def logicalFile = resolver.getLogicalFile()
 
 // create the appropriate compile parm list
-def compileParms = "TEST(SOURCE,EJPD),APOST,SQL,OPT(0)"
+def compileParms = "TEST(SOURCE,EJPD),APOST,OPT(0)"
 if (logicalFile.isCICS()) {
     compileParms = "$compileParms,DYNAM,CICS"
 }   
