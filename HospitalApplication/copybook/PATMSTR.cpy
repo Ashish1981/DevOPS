@@ -1,4 +1,4 @@
-      * COPY PTMSTR. MODIF
+      * COPY PTMSTR.
        01  PATIENT-MASTER-REC.
            05  PATIENT-ID                      PIC X(6).
            05  PATIENT-TYPE                    PIC X(1).
