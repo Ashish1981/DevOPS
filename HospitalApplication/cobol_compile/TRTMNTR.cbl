@@ -311,7 +311,7 @@ ztrial      05 TALLY-2              PIC S9(05) COMP-3.                  01970349
       **** zTrial Use Snippet INSPECT PATTERN                           03050325
       *
       * * * Inspect Statement                                           03050666
-      *     MOVE ZERO TO TALLY-1 TALLY-2.
+           MOVE ZERO TO TALLY-1 TALLY-2.
            INSPECT DIAGNOSTIC-CODE-PRIMARY IN PATIENT-MASTER-REC
            TALLYING TALLY-1   FOR LEADING 'DIAG'
                     TALLY-2   FOR LEADING 'DXX9'
