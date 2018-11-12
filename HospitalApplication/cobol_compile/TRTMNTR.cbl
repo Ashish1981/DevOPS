@@ -308,8 +308,6 @@ ztrial      05 TALLY-2              PIC S9(05) COMP-3.                  01970349
 030300        ERR-MSG IN INPATIENT-TREATMENT-REC-ERR                    03030001
 030400        MOVE "Y" TO ERROR-FOUND-SW                                03040001
 030500        GO TO 300-EXIT.                                           03050001
-      **** zTrial Use Snippet INSPECT PATTERN                           03050325
-      *
       * * * Inspect Statement                                           03050666
            MOVE ZERO TO TALLY-1 TALLY-2.
            INSPECT DIAGNOSTIC-CODE-PRIMARY IN PATIENT-MASTER-REC
