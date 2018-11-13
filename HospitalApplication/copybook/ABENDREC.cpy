@@ -1,4 +1,5 @@
       ** QSAM FILE   - 11/30/2018
+      * TEST MODIFICATION
        01  ABEND-REC.
            05  FILLER             PIC X(13) VALUE "ABEND PARA: ".
            05  PARA-NAME          PIC X(20).
