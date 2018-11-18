@@ -1,4 +1,4 @@
-      ** DAILY PATIENT/TREATMENTS FILE
+      *** DAILY PATIENT/TREATMENTS FILE
        01  INPATIENT-TREATMENT-REC.
            05  RECORD-TYPE             PIC X(01).
                88  TRAILER-REC        VALUE "T".
