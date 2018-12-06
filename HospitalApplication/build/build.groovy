@@ -117,11 +117,13 @@ else {
 	}
 }
 
-// generate build report
-def (File jsonFile, File htmlFile) = tools.generateBuildReport()
+if (!properties.userBuild) {
+	// generate build report
+	def (File jsonFile, File htmlFile) = tools.generateBuildReport()
 
-// finalize build result
-tools.finalizeBuildResult(jsonReport:jsonFile, htmlReport:htmlFile, filesProcessed:processCounter)
+    // finalize build result
+	tools.finalizeBuildResult(jsonReport:jsonFile, htmlReport:htmlFile, filesProcessed:processCounter)
+}
 
 // Print end build message
 def endTime = new Date()
