@@ -141,8 +141,8 @@ def getBuildList(List<String> args) {
 
 def createDatasets() {
     def properties = BuildProperties.getInstance()
-	def srcOptions = "cyl space(1,1) lrecl(80) dsorg(PO) recfm(F,B) dsntype(library) msg(1)"
-	def loadOptions = "cyl space(1,1) dsorg(PO) recfm(U) blksize(32760) dsntype(library) msg(1)" 
+	def srcOptions = "cyl space(1,1) lrecl(80) dsorg(PO) recfm(F,B) dsntype(library) msg(1) vol(C2PRD3)"
+	def loadOptions = "cyl space(1,1) dsorg(PO) recfm(U) blksize(32760) dsntype(library) msg(1)  vol(C2PRD3)" 
 	def srcDatasets = ["COBOL", "COPYBOOK", "OBJ", "BMS", "DBRM", "LINK", "MFS"]
 	def loadDatasets = ["LOAD", "TFORMAT"]
 
@@ -155,7 +155,7 @@ def createDatasets() {
 	}
 	
 	if (properties.errPrefix) {
-	    def xmlOptions = "tracks space(200,40) dsorg(PS) blksize(27998) lrecl(16383) recfm(v,b) new"
+	    def xmlOptions = "tracks space(200,40) dsorg(PS) blksize(27998) lrecl(16383) recfm(v,b) new vol(C2PRD3)"
     	new CreatePDS().dataset("${properties.hlq}.${properties.errPrefix}.SYSXMLSD.XML").options(xmlOptions).create()
 	}
 
